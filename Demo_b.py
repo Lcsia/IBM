@@ -50,7 +50,7 @@ def RecSp(Time,Name):
     seconds = Time
     filename = Name+'.mp3'
     p = pyaudio.PyAudio() 
-    print('Recording')
+    print('Start Record')
     stream = p.open(format=sample_format,
                     channels=channels,
                     rate=fs,
@@ -64,7 +64,7 @@ def RecSp(Time,Name):
     stream.stop_stream()
     stream.close()
     p.terminate()
-    print('Finished recording')
+    print('End Record')
     wf = wave.open(filename, 'wb')
     wf.setnchannels(channels)
     wf.setsampwidth(p.get_sample_size(sample_format))
@@ -79,6 +79,6 @@ def ReadTxt(File):
     
 #NOTA: el texto seleccionado por el profesor debe de estar adjunto en formato .txt    
 Text_1 = ReadTxt('Texto_1')
-RecSp(5,'Speech_1')
+RecSp(10,'Speech_1')
 Text_2 = Sp2Txt('Speech_1')
 print('Contraste:', TxtCom(Text_1,Text_2))
